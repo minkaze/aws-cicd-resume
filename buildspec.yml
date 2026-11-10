@@ -1,0 +1,31 @@
+
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo "Starting resume website build..."
+
+  pre_build:
+    commands:
+      - echo "Checking website files..."
+      - test -f index.html
+      - test -f style.css
+      - test -f script.js
+      - echo "All required files exist!"
+
+  build:
+    commands:
+      - echo "Building resume website..."
+      - mkdir -p dist
+      - cp index.html style.css script.js dist/
+      - echo "Build completed successfully!"
+
+  post_build:
+    commands:
+      - echo "Website is ready for deployment!"
+
+artifacts:
+  base-directory: dist
+  files:
+    - '**/*'
